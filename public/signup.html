@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 ASD Chatbot</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .custom-title {
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            font-size: 25px;
+            color: #1D3557;
+            background-color: #A8DADC;
+            padding: 20px 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="vh-100" style="height: 100vh; background-color: #F1FAEE;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center mb-4" style="background-color: rgb(249, 242, 242); border-radius: 10px; border: 2px solid rgb(0, 0, 0);">
+                <div class="col-md-6">
+                    <div id="image-container" style="display: flex; justify-content: center">
+                        <img src="images/chat4.png" class="img-fluid" alt="Sample image" style="border-radius: 10px;">
+                    </div>
+                </div>
+                
+                <!-- Login and Signup Forms -->
+                <div class="col-md-6">
+                    <!-- Login Form -->
+                    <div id="login" class="bg-primary-subtle mt-2 mb-4" style="padding:70px 40px 70px 40px; background-color: #F1FAEE; border: 2px solid rgb(0, 0, 0); border-radius: 10px; height: 600px;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h1 class="custom-title">Login Page</h1>
+                        </div>
+                        <form id="login-form" class="mt-5">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="email" style="color: #1D3557;">Email address</label>
+                                <input type="email" id="email" class="form-control form-control-lg" placeholder="Enter a valid email address" style="background-color: #A8DADC; color: #1D3557;" />
+                            </div>
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="password" style="color: #1D3557;">Password</label>
+                                <input type="password" id="password" class="form-control form-control-lg" placeholder="Enter password" style="background-color: #A8DADC; color: #1D3557;" />
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check mb-0">
+                                    <label class="form-check-label text-uppercase" for="remember" style="color: #1D3557;">Remember me</label>
+                                    <input class="form-check-input ml-3" type="checkbox" value="" id="remember" style="background-color: #A8DADC; color: #1D3557;" />
+                                </div>
+                                <div class="form-check ml-3">
+                                    <a href="#!" class="text-body">Forgot password?</a>
+                                </div>
+                            </div>
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #457B9D; color: #F1FAEE; padding:15px 70px 15px 70px">Login</button>
+                                <p class="small fw-bold mt-2 pt-1"><h5>Don't have an account?</h5> <a href="#" onclick="showSignup()"><h5>Register</h5></a></p>
+                            </div>
+                        </form>
+                    </div>
+    
+                    <!-- Signup Form - Initially Hidden -->
+                    <div id="signup" class="mt-2 mb-4" style="padding: 20px; background-color: #F1FAEE; border: 2px solid rgb(54, 52, 52); border-radius: 10px; display: none; height: 650px;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h1 class="custom-title">Signup Page</h1>
+                        </div>
+                        <form id="signup-form" class="mt-5">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="username" style="color: #1D3557;">User Name</label>
+                                <input type="text" id="username" class="form-control form-control-lg" placeholder="Insert your name" style="background-color: #A8DADC; color: #1D3557;" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="signup-email" style="color: #1D3557;">Email address</label>
+                                <input type="email" id="signup-email" class="form-control form-control-lg" placeholder="Enter a valid email address" style="background-color: #A8DADC; color: #1D3557;" />
+                            </div>
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="signup-password" style="color: #1D3557;">Password</label>
+                                <input type="password" id="signup-password" class="form-control form-control-lg" placeholder="Enter password" style="background-color: #A8DADC; color: #1D3557;" />
+                            </div>
+                            <div class="form-check d-flex justify-content-center mb-1">
+                                <label class="form-check-label" for="is_parent" style="color: #1D3557;">Are you a parent?</label>
+                                <div class="form-check-input-container ml-5">
+                                    <input class="form-check-input" type="checkbox" value="1" id="is_parent" style="background-color: #A8DADC; color: #1D3557;">
+                                </div>
+                            </div>
+                            <div class="text-center text-lg-start mt-2 pt-2">
+                                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #457B9D; color: #F1FAEE;padding:15px 70px 15px 70px ;">Register</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0"><h5>Already have an account?</h5> <a href="#" onclick="showLogin()"><h5>Login</h5></a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/signup.js"></script>
+</body>
+
+</html>

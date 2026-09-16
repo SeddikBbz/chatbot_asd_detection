@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="images/bot.jpg">
+    <title>ASD Chatbot</title>
+    <!-- Only include one version of Bootstrap and FontAwesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Your custom CSS file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body class="body">
+    <div class="wrapper d-flex">
+
+        <!-- Left Sidebar -->
+    <aside id="left-sidebar">
+        <div class="d-flex">
+            <button class="toggle-btn" id="toggle-left" type="button">
+                <i class="lni lni-grid-alt"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="new-chat-btn" id="new-chat-btn">
+                <a href="#" class="sidebar-link">
+                    <img src="images/news.png" style="margin-left: -8px;" alt="New Chat Icon">
+                    <span>New Chat</span>
+                </a>
+            </li>
+            <li class="child-btn">
+                <a href="#" class="sidebar-link" id="child-btn">
+                    <img src="images/ic_launcher_round.png" style="margin-left: -8px; margin-right: 3px; width: 30px; height: 30px;" alt="New Chat Icon">
+                    <span>New Child</span>
+                </a>
+                <span class="sidebar-span">Your Child</span>
+                <ul id="child-list" class="sidebar-content"></ul>
+            </li>
+            <li class="sidebar-content1">
+                <span class="sidebar-span2">Your Conversation</span>
+            </li>
+            <li class="sidebar-content1">
+                <ul id="conversation-list" class="sidebar-content2"></ul>
+            </li>
+            <div class="sidebar-footer" style="background-color: rgba(235, 181, 53, 0.919);">
+                <a href="/signup" id="logout-link" class="sidebar-link">
+                    <i class="lni lni-exit" style="font-weight: bold; color: white;"></i>
+                    <span style="font-weight: bold; color: white;">Logout</span>
+                </a>
+            </div>
+        </ul>
+    </aside>
+        <!-- Right Sidebar -->
+        <aside id="right-sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" id="toggle-right" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="child-btn">
+                    <span class="sidebar-span" style="margin-left: -20px; cursor: pointer;">
+                        <img src="images/boy.png" style="margin-left: -20px; margin-right: 8px; margin-top: -7px; width: 40px; height: 40px;" alt="New Chat Icon">
+                        Child
+                    </span>
+                    <span class="sidebar-span" style="cursor: pointer;">
+                        <img src="images/edit.png" style="margin-left: -20px; margin-right: 8px; margin-top: -7px; width: 40px; height: 40px;" alt="New Chat Icon">
+                        Edit Child
+                    </span>
+                    <span class="sidebar-span" style="cursor: pointer;">
+                        <img src="images/bin.png" style="margin-left: -20px; margin-right: 8px; margin-top: -7px; width: 40px; height: 40px;" alt="New Chat Icon">
+                        Delete Child
+                    </span>
+                    <ul id="child-list-right" class="sidebar-content"></ul>
+                </li>
+                <li class="sidebar-content1">
+                    <span class="sidebar-span2" style="cursor: pointer;">More Information</span>
+                </li>
+            </ul>
+        </aside>
+        
+
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-md-8 col-xl-6 chat">
+                    <div class="card">
+                        <div class="card-header msg_head">
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/chat5.png" class="rounded-circle user_img" width="90" height="90">
+                                    <span class="online_icon"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span style="margin-left: 5px;margin-top: 50px;">ChatBot</span>
+                                    <p style="margin-left: 5px;">Ask me anything!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chat-history" class="chat-history card-body msg_card_body"></div>
+                        <div class="card-footer">
+                            <form id="chat-form" class="input-group">
+                                <input type="text" id="user-input" name="msg" placeholder="Type your message..."
+                                    autocomplete="off" class="form-control type_msg" required>
+                                <div class="input-group-append">
+                                    <button type="submit" id="send" class="input-group-text send_btn">
+                                        <i class="fas fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="childInfoModal" tabindex="-1" role="dialog" aria-labelledby="childInfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="childInfoModalLabel">Enter Child's Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeChildInfoModal()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="childInfoForm">
+                            <div class="form-group">
+                                <label for="childName">Child's Name:</label>
+                                <input type="text" class="form-control" id="childName">
+                            </div>
+                            <div class="form-group">
+                                <label for="childAge">Child's Age:</label>
+                                <input type="number" class="form-control" id="childAge">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="saveChildInfo()">Save</button>
+                        <button type="button" class="btn btn-secondary" id="closeModalBtn" data-dismiss="modal" onclick="closeChildInfoModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loader" style="display: none;"></div>
+
+        
+    </div>
+    <footer class="footer">
+        <div class="footer-left">
+            <span id="userName">User's Name</span>
+        </div>
+        <div class="footer-center">
+            <span>ASD ChatBot</span>
+        </div>
+        <div class="footer-right">
+            <span>&copy; 2024 Dz Soft</span>
+        </div>
+    </footer>
+    <!-- Include only one version of Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/script.js">
+                
+
+        </script>
+</body>
+
+</html>

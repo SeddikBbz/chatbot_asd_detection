@@ -1,0 +1,22 @@
+{
+  "name": "asd-chatbot",
+  "version": "2.0.0",
+  "description": "ASD support chatbot (Node/Express + Supabase + Gemini). See README.md for setup.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test tests/app.test.js",
+    "check:supabase": "node tests/checkSupabaseConnection.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  }
+}
